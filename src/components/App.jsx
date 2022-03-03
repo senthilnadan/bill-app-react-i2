@@ -9,6 +9,22 @@ import {
   Navigate,
   Link,
 } from "react-router-dom";
+import BookList from "./books/BookList";
+import NewBook from "./books/NewBook";
+import BookPage from "./books/BookPage";
+import Books from "./books/Books";
+import AuthorList from "./authors/AuthorsList";
+import Authors from "./authors/Authors";
+import AuthorPage from "./authors/AuthorPage";
+import NewAuthor from "./authors/NewAuthor";
+import Customers from "./customers/Customers";
+import CustomerPage from "./customers/CustomerPage";
+import CustomerList from "./customers/CustomerList";
+import NewCustomer from "./customers/NewCustomer";
+import InvoiceList from "./invoices/InvoicesList";
+import InvoicePage from "./invoices/InvoicePage";
+import Invoices from "./invoices/Invoices";
+import NewInvoice from "./invoices/NewInvoice";
 
 const App = () => {
   return (
@@ -44,201 +60,6 @@ const App = () => {
 };
 
 const Home = () => <h2>Home</h2>;
-
-const Invoices = () => {
-  return (
-    <>
-      <h2>All about Invoices</h2>
-      <nav>
-        <NavLink to="/invoices/new"> Addinvoice</NavLink>
-        {" | "}
-        <NavLink to="/invoices/"> Listinvoice</NavLink>
-      </nav>
-
-      <Outlet />
-    </>
-  );
-};
-
-const NewInvoice = () => {
-  return (
-    <>
-      <h2> New Invoice Form Displayed Here</h2>
-    </>
-  );
-};
-
-const InvoicePage = () => {
-  const { slug } = useParams();
-  return (
-    <>
-      <h2> Invoice {slug} displayed Here </h2>
-    </>
-  );
-};
-
-const InvoiceList = () => {
-  return (
-    <>
-      <h3>Invoice List Appears Here</h3>
-      <ul>
-        <li>
-          <Link to="/invoices/invoice1">invoice 1</Link>
-        </li>
-        <li>
-          <Link to="/invoices/invoice2">invoice 2</Link>
-        </li>
-      </ul>
-    </>
-  );
-};
-
-const Customers = () => {
-  return (
-    <>
-      <h2>All about Customers</h2>
-      <nav>
-        <NavLink to="/customers/new"> AddCustomer</NavLink>
-        {" | "}
-        <NavLink to="/customers/"> ListCustomer</NavLink>
-      </nav>
-
-      <Outlet />
-    </>
-  );
-};
-
-const NewCustomer = () => {
-  return (
-    <>
-      <h2> New Customer Form Displayed Here</h2>
-    </>
-  );
-};
-
-const CustomerPage = () => {
-  const { slug } = useParams();
-  return (
-    <>
-      <h2> Customer {slug} displayed Here </h2>
-      <Link to={"/customers/" + slug + "/invoices"}> Invoices for {slug} </Link>
-      <Outlet />
-    </>
-  );
-};
-
-const Books = () => {
-  return (
-    <>
-      <h2>Booklist gets Displayed Here</h2>
-      <nav>
-        <NavLink to="/books/new"> AddBook</NavLink>
-        {" | "}
-        <NavLink to="/books/"> ListBook</NavLink>
-      </nav>
-
-      <Outlet />
-    </>
-  );
-};
-
-const Authors = () => {
-  return (
-    <>
-      <h2> Everything About our Authors </h2>
-      <nav>
-        <NavLink to="/authors/new"> AddAuthor</NavLink>
-        {" | "}
-        <NavLink to="/authors/"> ListAuthor</NavLink>
-      </nav>
-
-      <Outlet />
-    </>
-  );
-};
-
-const NewAuthor = () => {
-  return (
-    <>
-      <h2> New Author Form Displayed Here</h2>
-    </>
-  );
-};
-
-const CustomerList = () => {
-  return (
-    <>
-      <h3>Customer List Appears Here</h3>
-      <ul>
-        <li>
-          <Link to="/customers/customer1">Customer 1</Link>
-        </li>
-        <li>
-          <Link to="/customers/customer2">Customer 2</Link>
-        </li>
-      </ul>
-    </>
-  );
-};
-
-const AuthorPage = () => {
-  const { slug } = useParams();
-  return (
-    <>
-      <h2> Book {slug} displayed Here </h2>
-    </>
-  );
-};
-
-const AuthorList = () => {
-  return (
-    <>
-      <h3>Author List Appears Here</h3>
-      <ul>
-        <li>
-          <Link to="/authors/book1">Author 1</Link>
-        </li>
-        <li>
-          <Link to="/authors/book2">Author 2</Link>
-        </li>
-      </ul>
-    </>
-  );
-};
-
-const NewBook = () => {
-  return (
-    <>
-      <h2> New Book Form Displayed Here</h2>
-      <button onClick={() => showListView()}>Show Book List</button>
-    </>
-  );
-};
-
-const BookPage = () => {
-  const { slug } = useParams();
-  return (
-    <>
-      <h2> Book {slug} displayed Here </h2>
-    </>
-  );
-};
-
-const BookList = () => {
-  return (
-    <>
-      <h3>Book List Appears Here</h3>
-      <ul>
-        <li>
-          <Link to="/books/book1">Book1</Link>
-        </li>
-        <li>
-          <Link to="/books/book2">Book2</Link>
-        </li>
-      </ul>
-    </>
-  );
-};
 
 const Layout = () => {
   return (
