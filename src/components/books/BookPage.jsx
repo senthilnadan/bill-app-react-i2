@@ -5,6 +5,8 @@ import * as bookActions from "../../redux/actions/bookActions";
 import * as authorActions from "../../redux/actions/authorActions";
 import { useState, useEffect } from "react";
 import BookForm from "./BookForm";
+import BookFormRender from "./BookFormRender";
+
 const BookPage = ({ books, authors, loadBooks, loadAuthors, ...props }) => {
   const { slug } = useParams();
   const [book, setBook] = useState({});
@@ -20,7 +22,7 @@ const BookPage = ({ books, authors, loadBooks, loadAuthors, ...props }) => {
         alert("error Message is " + error);
       });
     }
-  }, [books, authors, book]);
+  }, [books, authors]);
 
   const getAuthorById = (authorId) => {
     if (authors.length > 0) {
@@ -57,15 +59,15 @@ const BookPage = ({ books, authors, loadBooks, loadAuthors, ...props }) => {
           setEditMode(true);
         }}
       >
-        Edit Book {JSON.stringify(book)}
+        Edit Book
       </button>
-      <AddBookRender
+      <BookFormRender
         book={book}
         authors={authors}
         editMode={editMode}
         handleChange={handleChange}
         handleSave={handleSave}
-      ></AddBookRender>
+      ></BookFormRender>
 
       <h3> Title {book.title}</h3>
       <h3> Category {book.category}</h3>
@@ -100,23 +102,4 @@ BookPage.propType = {
   loadAuthors: PropType.func.isRequired,
   loadBooks: PropType.func.isRequired,
   saveBook: PropType.func.isRequired,
-};
-
-const AddBookRender = ({
-  book,
-  authors,
-  editMode,
-  handleChange,
-  handleSave,
-}) => {
-  if (book && authors.length > 0 && editMode)
-    return (
-      <BookForm
-        book={book}
-        authors={authors}
-        onChange={handleChange}
-        onSave={handleSave}
-      ></BookForm>
-    );
-  return <h3>Waiting to load book and Authros </h3>;
 };
