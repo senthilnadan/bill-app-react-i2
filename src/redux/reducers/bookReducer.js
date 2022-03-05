@@ -9,6 +9,11 @@ export default function bookReducer(state = intialState.books, action) {
     case Types.LOAD_BOOKS_SUCCESS: {
       return action.books;
     }
+    case Types.UPDATE_BOOK: {
+      return state.books.map((book) => {
+        book.id === action.book.id ? action.book : book;
+      });
+    }
     default:
       return state;
   }
