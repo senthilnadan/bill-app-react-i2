@@ -4,10 +4,16 @@ import { connect } from "react-redux";
 import * as bookActions from "../../redux/actions/bookActions";
 import * as authorActions from "../../redux/actions/authorActions";
 import { useState, useEffect } from "react";
-import BookForm from "./BookForm";
 import BookFormRender from "./BookFormRender";
 
-const BookPage = ({ books, authors, loadBooks, loadAuthors, ...props }) => {
+const BookPage = ({
+  books,
+  authors,
+  loadBooks,
+  loadAuthors,
+  saveBook,
+  ...props
+}) => {
   const { slug } = useParams();
   const [book, setBook] = useState({});
   const [editMode, setEditMode] = useState(false);
@@ -36,21 +42,25 @@ const BookPage = ({ books, authors, loadBooks, loadAuthors, ...props }) => {
     if (name === "authorId") {
       const newBook = { ...book, authorId: parseInt(value, 10) };
       const checkSpreadSyntaxBook = { ...book, ...newBook };
-      debugger;
+
       setBook((prevBook) => {
-        return { ...prevBook, authorId: 2 };
+        return {
+          ...prevBook,
+          [name]: name === "authorId" ? parseInt(value, 10) : value,
+        };
       });
-      debugger;
-      alert("book " + JSON.stringify(book));
     }
   };
 
   function handleSave(event) {
-    debugger;
     event.preventDefault();
+    debugger;
     saveBook(book).then(() => {
       history.push("/books");
     });
+  }
+  function doDeleteBook() {
+    alert("Are your sure you like to delete this book");
   }
   return (
     <>
@@ -60,6 +70,13 @@ const BookPage = ({ books, authors, loadBooks, loadAuthors, ...props }) => {
         }}
       >
         Edit Book
+      </button>
+      <button
+        onClick={() => {
+          doDeleteBook();
+        }}
+      >
+        Delete Book
       </button>
       <BookFormRender
         book={book}
